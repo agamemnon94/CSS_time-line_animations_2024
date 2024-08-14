@@ -37,7 +37,8 @@ body {
   min-height: 400svh;
   font-family: Arial, Helvetica, sans-serif;
   padding: 3% 5%;
-  /* display: grid; */
+  display: grid;
+  place-items: center;
 }
 
 /**** HEADER ****/
@@ -153,6 +154,7 @@ p {
 
 #container {
   position: relative;
+  width: 80svw;
   height: 50svh;
   overflow-y: scroll;
   scroll-timeline-name: --squareTimeline;
