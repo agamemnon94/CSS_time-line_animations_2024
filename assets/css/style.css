@@ -1,0 +1,191 @@
+/**** Bug transitions  (voir app.js) *****/
+.clean__transition * {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  -ms-transition: none !important;
+  transition: none !important;
+}
+
+/**** reset *****/
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/**** Variables ****/
+:root {
+  --white: #fff;
+  --f1: #f1f1f1;
+  --dark: #333;
+
+  --size-content-1: 20ch;
+  --size-content-2: 65ch;
+}
+
+/**** GENERALITES  ****/
+
+html {
+  background: var(--white);
+  font-size: 62.5%;
+}
+body {
+  min-height: 400svh;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 3% 5%;
+  /* display: grid; */
+}
+
+/**** HEADER ****/
+
+h1 {
+  font-size: clamp(2.5rem, 3svw, 5rem);
+  color: coral;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/**** MAIN ****/
+@keyframes appear {
+  from {
+    opacity: 0;
+    scale: 0.5;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  img {
+    animation: appear linear;
+    animation-timeline: view();
+    animation-range: entry 0 cover 25%;
+  }
+}
+
+/* ETC */
+
+img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 1rem;
+}
+
+li {
+  list-style: none;
+}
+
+li:nth-child(even) {
+  margin-top: 8rem;
+}
+
+li:nth-child(odd):not(:first-child) {
+  margin-top: -4rem;
+}
+
+ul {
+  padding: 0;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 0 1rem;
+  justify-content: center;
+}
+
+/* background colors if images don't show up */
+
+img {
+  background-color: lightblue;
+}
+
+img:nth-child(2) {
+  background-color: yellow;
+}
+
+/**** Content ****/
+
+.subject {
+  width: 300px;
+  height: 200px;
+  margin: 0 auto;
+  background-color: blueviolet;
+}
+
+.content {
+  width: 75%;
+  max-width: 800px;
+  margin: 55px auto 0;
+}
+
+p {
+  font-size: 1.5rem;
+  line-height: 1.5;
+}
+
+.animated {
+  view-timeline: --subjectReveal block;
+  animation-timeline: --subjectReveal;
+
+  animation-name: appear2;
+  animation-range: entry 30% contain 75%;
+  animation-fill-mode: both;
+  animation-duration: 1ms; /* Firefox requires this to apply the animation */
+}
+
+@keyframes appear2 {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+/**** square ****/
+
+#container {
+  position: relative;
+  height: 50svh;
+  overflow-y: scroll;
+  scroll-timeline-name: --squareTimeline;
+  position: relative;
+  margin-top: 55px;
+}
+
+#square {
+  background-color: deeppink;
+  width: 100px;
+  height: 100px;
+  margin-top: 100px;
+  animation-name: rotateAnimation;
+  animation-duration: 1ms; /* Firefox requires this to apply the animation */
+  animation-direction: alternate;
+  animation-timeline: --squareTimeline;
+
+  position: absolute;
+  bottom: 0;
+}
+
+@keyframes rotateAnimation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Le CSS "stretcher" définit la hauteur du bloc à 600px, ce qui force l'élément conteneur à déborder et à créer des barres de défilement. Sans cet élément, il n'y aurait pas de barre de défilement, et donc pas de chronologie de progression du défilement à associer à la chronologie de l'animation. */
+#stretcher {
+  height: 87svh;
+}
+
+/**** FOOTER ****/
