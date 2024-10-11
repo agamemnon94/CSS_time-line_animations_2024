@@ -1,3 +1,3 @@
-// window.addEventListener('load', () => {
-//   document.body.classList.remove("clean__transition");
-// })
+window.addEventListener("load", () => {
+  document.body.classList.remove("clean__transition");
+});
